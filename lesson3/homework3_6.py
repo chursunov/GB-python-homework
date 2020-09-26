@@ -14,5 +14,5 @@ def int_func(user_word):
 new_user_string = ""
 user_string = input("Введите строку из латинских букв в нижнем регистре: ").split()
 for element in user_string:
-    new_user_string = new_user_string + "-" + int_func(element) + "."
+    new_user_string = new_user_string + " " + int_func(element)
 print(new_user_string)
