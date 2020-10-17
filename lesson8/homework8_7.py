@@ -27,5 +27,6 @@ class ComplexNumber:
 
 a = ComplexNumber("1+3x")
 b = ComplexNumber("3+2x")
+
 print(a + b)
 print(a * b)
