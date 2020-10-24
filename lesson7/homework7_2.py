@@ -22,9 +22,6 @@ from abc import ABC, abstractmethod
 class Clothes(ABC):
     name: str
 
-    # def __init__(self, name) -> None:
-    #     self.name = name
-
     @abstractmethod
     def material_consumptions(self):
         pass
@@ -35,8 +32,8 @@ class Suit(Clothes):
     def __init__(self, name, h: float) -> None:
         self.h = h
         self.name = name
-        # super().__init__(name)
 
+    @property
     def material_consumptions(self):
         return 2 * self.h + 0.3
 
@@ -46,8 +43,8 @@ class Coat(Clothes):
     def __init__(self, name, v: float) -> None:
         self.v = v
         self.name = name
-        # super().__init__(name)
 
+    @property
     def material_consumptions(self):
         return self.v / 6.5 + 0.5
 
@@ -55,19 +52,17 @@ class Coat(Clothes):
 class Consumptions(Clothes):
     result: float
 
-    def __init__(self, clo: list):
+    def __init__(self, clo: list, result=0):
         self.clo = clo
+        self.result = result
 
     def material_consumptions(self):
-        self.result = 0
         for item in self.clo:
-            self.result = self.result + float(item.material_consumptins())
-        return self.result
+            self.result = self.result + item.material_consumptions
+        return round(self.result, 2)
 
 
-suit = Suit("Armani", 50)
+suit = Suit("Armani", 60)
 coat = Coat("Baker", 186)
 cons = Consumptions([suit, coat])
-print(cons.material_consumptions())
-print(round(suit.material_consumptions(), 2))
-print(round(coat.material_consumptions(), 2))
+print(f"Всего необходимо ткани - {cons.material_consumptions()}")
